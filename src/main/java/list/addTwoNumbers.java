@@ -15,8 +15,8 @@ public class addTwoNumbers {
         Stack<Integer> stack2 = new Stack<Integer>();
         ListNode p1 = l1;
         ListNode p2 = l2;
-        while (p1 != null) {
-            stack1.push(p1.val);
+                while (p1 != null) {
+                    stack1.push(p1.val);
             p1 = p1.next;
         }
         while (p2 != null) {
