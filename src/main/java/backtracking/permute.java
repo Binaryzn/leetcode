@@ -37,6 +37,7 @@ public class permute {
             return;
         }
         for (int i=0;i<nums.length;i++){
+            //剪枝 避免111这种情况出现
             if(flag[i] == 1){
                 continue;
             }
