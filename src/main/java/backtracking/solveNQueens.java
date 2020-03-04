@@ -62,11 +62,11 @@ public class solveNQueens {
             }
         }
         //判断右上角到左下角有没有皇后  左下 ---->右上
-        for (int j = col+1;j>=0;j--){
-            if(row+j-col<0){
+        for (int j = col + 1; j >= 0; j--) {
+            if (row + j - col < 0) {
                 break;
             }
-            if(broad[row+j-col][j] == 1){
+            if (broad[row + j - col][j] == 1) {
                 return false;
             }
         }
@@ -81,12 +81,12 @@ public class solveNQueens {
      */
     public void transfer(int[][] broad) {
         List res = new ArrayList();
-        for (int i=0;i<broad.length;i++){
+        for (int i = 0; i < broad.length; i++) {
             StringBuilder stringBuilder = new StringBuilder();
-            for (int j=0;j<broad.length;j++){
-                if(broad[i][j] == 0){
-stringBuilder.append(",");
-                }else {
+            for (int j = 0; j < broad.length; j++) {
+                if (broad[i][j] == 0) {
+                    stringBuilder.append(",");
+                } else {
                     stringBuilder.append("Q");
                 }
             }
