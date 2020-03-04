@@ -9,14 +9,15 @@ import java.util.List;
 public class solveNQueens {
 
 
-    private List<List<String>> res = new ArrayList<>();
+    private List<List<String>> ans = new ArrayList<>();
 
 
     public List<List<String>> solveNQueens(int n) {
 
-        //默认为0 表示不放置皇后
+        //默认为0 表示不放置皇后 为1表示放置皇后
         int[][] broad = new int[n][n];
         dfs(n, 0, broad);
+        return ans;
     }
 
 
@@ -51,7 +52,7 @@ public class solveNQueens {
                 return false;
             }
         }
-        //判断左上角到右下角有没有皇后
+        //判断左上角到右下角有没有皇后 右下---->左上
         for (int i = col - 1; i >= 0; i--) {
             if (i - col + row < 0) {
                 break;
@@ -60,7 +61,16 @@ public class solveNQueens {
                 return false;
             }
         }
-        //判断右上角到左下角有没有皇后
+        //判断右上角到左下角有没有皇后  左下 ---->右上
+        for (int j = col+1;j>=0;j--){
+            if(row+j-col<0){
+                break;
+            }
+            if(broad[row+j-col][j] == 1){
+                return false;
+            }
+        }
+        return true;
     }
 
 
@@ -70,8 +80,19 @@ public class solveNQueens {
      * @param broad
      */
     public void transfer(int[][] broad) {
-
-
+        List res = new ArrayList();
+        for (int i=0;i<broad.length;i++){
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int j=0;j<broad.length;j++){
+                if(broad[i][j] == 0){
+stringBuilder.append(",");
+                }else {
+                    stringBuilder.append("Q");
+                }
+            }
+            res.add(stringBuilder.toString());
+        }
+        ans.add(res);
     }
 
 
