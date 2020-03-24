@@ -24,7 +24,7 @@ public class solveNQueens {
     public void dfs(int n, int row, int[][] broad) {
         //如果row 和 n相等  说明 一种情况已存在
         if (row == n) {
-            transfer(broad);
+            ans.add(track(broad,n));
             return;
         }
         for (int col = 0; col < n; col++) {
@@ -62,11 +62,11 @@ public class solveNQueens {
             }
         }
         //判断右上角到左下角有没有皇后  左下 ---->右上
-        for (int j = col + 1; j >= 0; j--) {
-            if (row + j - col < 0) {
+        for (int j = col + 1; j < broad.length; j++) {
+            if (row + col - j < 0) {
                 break;
             }
-            if (broad[row + j - col][j] == 1) {
+            if (broad[row + col - j][j] == 1) {
                 return false;
             }
         }
@@ -74,25 +74,18 @@ public class solveNQueens {
     }
 
 
-    /**
-     * 转字符串
-     *
-     * @param broad
-     */
-    public void transfer(int[][] broad) {
-        List res = new ArrayList();
-        for (int i = 0; i < broad.length; i++) {
-            StringBuilder stringBuilder = new StringBuilder();
-            for (int j = 0; j < broad.length; j++) {
-                if (broad[i][j] == 0) {
-                    stringBuilder.append(",");
-                } else {
-                    stringBuilder.append("Q");
-                }
+    //将int类型棋盘转换成输出格式
+    private List<String> track(int[][] board, int n) {
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            StringBuilder temp = new StringBuilder();
+            for (int j = 0; j < n; j++) {
+                if (board[i][j] == 0) temp.append('.');
+                else temp.append('Q');
             }
-            res.add(stringBuilder.toString());
+            list.add(temp.toString());
         }
-        ans.add(res);
+        return list;
     }
 
 
